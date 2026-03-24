@@ -8,20 +8,22 @@
 
 ## Installation
 
-pip install numpy pandas matplotlib scipy sklearn
+pip install numpy pandas matplotlib scipy scikit-learn
 
 ## Description 
 Imagine having a molecule whose vapour pressure you need to know at any given temperature, some would turn to equations or formulas, others to programs. What if you could use ML as a tool to predict those values?
 In this project i seek to know which simple ML model can reliably predict the thermodynamic properties of Vapour Pressure, Specific Heat Capacity for Liquid and Vapour states of N-Hexane.
 
 ## Data use and Methodology
-- The data used for this project is for free use at https:/nist.gov, specifically at the Saturation Properties for Hexane - Temperature Increments database.
+- The data used for this project is for free use at https://nist.gov, specifically at the Saturation Properties for Hexane - Temperature Increments database.
 
 - For practical reasons, the temperature range was truncated from 177.8 K to 490 K, this to avoid, for reasons of linearity and simplicity, the data belonging to the critical point area and adjacent areas.
 
 - The variables were transformed with ln() to improve linear correlation and three independent models were specified, T→ln(P), T→ln(Cp_L), T→ln(Cp_V). Being P: Vapour Pressure, Cp_L: Specific Heat Capacity for Liquid State, Cp_V: Specific Heat Capacity for Vapour State.
 
 <img width="1567" height="603" alt="N-HEXANE_EXP_GRAPHS" src="https://github.com/user-attachments/assets/9fff617c-fcae-4304-962b-5d1c00e0ae6d" />
+<img width="579" height="496" alt="image" src="https://github.com/user-attachments/assets/d3c54573-8e7e-4e20-b1c2-603a7e8a32cb" />
+
 
 
 ## Results
@@ -32,5 +34,13 @@ In this project i seek to know which simple ML model can reliably predict the th
 | T→ln(Cp_L) | 0.934 | 0.990 |0.999995| 0.057 | 0.019 |0.002|
 | T→ln(Cp_V) | 0.950 | 0.990 |0.999995| 0.073 | 0.031 |0.001|
 
-# Final conclusion; ¿Can ML Reliably Predict Thermodynamic Properties of N-hexane From Just Temperature?
+## Final conclusion; Can ML Reliably Predict Thermodynamic Properties of N-hexane From Just Temperature?
 The answer to this question is YES, ML can predict the thermodynamic properties of n-hexane from just temperature, but only in a defined range. In this project it is proved that the models used have a strong and clear limitation, they cannot predict properties and do not generalize correctly outside of the defined range, and also, The Random Forest cannot physically interpret the properties of n-hexane. Thus, we can infer that if we give the models data greater than 490 Kelvin (close to the critical point), the predictions become unreliable and the models do not adapt to the data.
+
+- We can see that the Random Forest model achieved the highest R² and lowest RMSE of all the models.
+
+- Practically, a random forest model would be recommended for the prediction of the thermodynamic properties of vapor pressure, Liquid Cp and Vapor Cp,likewise, this model can be applied to petrochemical, vegetable oil and chemical synthesis industries.
+
+- It is remarkable to understand that the reliability of predictions depends solely on the reliability of the data themselves, in this case, the NIST databases.
+
+- For the future; with more time, I would have used models to extrapolate the data outside the chosen range, thus testing the reliability of ML models for predicting the thermodynamic properties of molecules.
